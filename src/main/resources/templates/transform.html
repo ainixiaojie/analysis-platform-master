@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>指挥调度</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+    <script src="js/flv/flv.min.js"></script>
+
+</head>
+
+<body>
+<div th:insert="~{commons/common::top}"></div>
+<!--内容部分-->
+<div class="con1 left" id="car_control">
+    <div class="left car_left">
+        <div class="left_up bow_shadow">
+            <p>
+                <input type="text" placeholder="输入车牌号" class="carNo_input"><input type="button" class="find_but"/>
+            </p>
+
+            <p class="set_list"><i class="list_i"></i> 设备列表：</p>
+            <p>
+            <ul id="treeDemo" class="ztree"></ul>
+            </p>
+        </div>
+        <div class="left_down bow_shadow">
+            <div class="text_center"><a href="javascript:void (0)" class="tab_a tab_aActive">基本信息</a><a
+                    href="javascript:void (0)" class="tab_a">云台控制</a></div>
+            <div class="car_content">
+                <p><span>车牌号：</span><span>K89076</span></p>
+                <p><span>驾驶人姓名：</span><span>K89076</span></p>
+                <p><span>车辆品牌：</span><span>K89076</span></p>
+                <p><span>车辆型号：</span><span>K89076</span></p>
+                <p><span>所属公司：</span><span>K89076xxxxxxxxxxxxxxxxxx</span></p>
+                <p><span>行驶里程：</span><span>xxxxx</span></p>
+                <p><span>状态：</span><span>xxxxx</span></p>
+                <p><span>所在位置：</span><span>xxxxxxxxxxxxx</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="left car_center" style="width: 81%">
+        //功能
+        <div id="otherFunc">
+            <div id="spier" class="func_item">
+                <video class="video" muted controls="controls" style="width: 1238px;height: 555px"></video>
+            </div>
+            <div id="dial" class="func_item">
+                <div class="container">
+                    <div class="form-inline">
+                        SRS:
+                        <input type="text" id="txt_host" class="input-medium" value="">
+                        Room:
+                        <input type="text" id="txt_room" class="input-small" value="live">
+                        Display:
+                        <input type="text" id="txt_display" class="input-small" value="">
+                        <button class="btn btn-primary" id="btn_start">加入房间</button>
+                    </div>
+
+                    <div class="row srs_players">
+                        <div class="span4 hide" id="publisher" style="display: block;">
+                            <label></label>
+                            <video id="rtc_media_publisher" width="310" autoplay="" muted="" controls=""
+                                   style="display: none;"></video>
+
+                            <label></label>
+                            <span id="self"></span>
+                        </div>
+                        <div class="span4 hide" id="player">
+                            <label></label>
+                            <video id="rtc_media_player" width="310" autoplay="" muted="" controls=""></video>
+
+                            <label></label>
+                            <span id="peer"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="dial_record" class="func_item">dial_record</div>
+            <div id="text_record" class="func_item">text_record</div>
+            <div id="system_settings" class="func_item">system_settings</div>
+            <div id="system_log" class="func_item">system_log</div>
+        </div>
+        <div class="left nav">
+            <ul>
+                <li class="nav_active" style="margin-left: 95px" onclick="change(0)"><a>拨号盘</a></li>
+                <li class="nav_active" style="margin-left: 95px" onclick="change(1)"><a>拨号盘</a></li>
+                <li class="nav_active" style="margin-left: 95px" onclick="change(2)"><a>通话记录</a></li>
+                <li class="nav_active" style="margin-left: 95px" onclick="change(3)"><a>信息记录</a></li>
+                <li class="nav_active" style="margin-left: 95px" onclick="change(4)"><a>系统设置</a></li>
+                <li class="nav_active" style="margin-left: 95px" onclick="change(5)"><a>系统日志</a></li>
+            </ul>
+        </div>
+    </div>
+
+
+</div>
+<style>
+    #otherFunc{
+    position: relative;
+    width: 1238px;
+    height: 555px;
+    }
+    .func_item{
+    display:block;
+    width: 1238px;
+    height: 555px;
+    overflow: hidden;
+    position:absolute;
+    left:0px;
+    top:0px;
+    }
+
+
+
+
+</style>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/base.js"></script>
+<script src="js/srs/sts_meeting.js"></script>
+<!-- <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=5ieMMexWmzB9jivTq6oCRX9j&callback"></script> -->
+<!-- <script src="js/car_control.js"></script> -->
+<script>
+    var all_height=$(window).height();
+    var div_height=all_height-84;
+    $("#car_control").css("height",div_height+"px");
+    //otherfunction
+
+    change(0);
+
+    function change(id){
+    $("#otherFunc").children().hide();
+    console.log($("#otherFunc").children().length);
+    $("#otherFunc").children().eq(id).show();
+    }
+
+
+
+
+</script>
+<script src="js/ztree/jquery.ztree.all-3.5.js"></script>
+<script src="js/listTree.js"></script>
+
+<script src="js/flv/flv_video.js"></script>
+
+
+</body>
+</html>
+</html>

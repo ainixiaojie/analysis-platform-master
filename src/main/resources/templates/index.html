@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>HTML5交通运输监控大数据可视化智慧云平台</title>
+    <meta name="keywords" content="HTML5交通运输监控大数据可视化智慧云平台"/>
+    <meta name="description"
+          content="HTML5交通运输监控大数据可视化智慧云平台"/>
+<!--    <meta name="author" content="js代码(www.jsdaima.com)"/>-->
+<!--    <meta name="copyright" content="js代码(www.jsdaima.com)"/>-->
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+</head>
+<body>
+<!--顶部-->
+<div th:insert="~{commons/common::top}"></div>
+
+<!--内容部分-->
+<div class="con left">
+    <!--选择时间-->
+    <div class="select_time">
+        <div class="static_top left">
+            <i></i><span>总体概况</span>
+        </div>
+    </div>
+    <!--数据总概-->
+    <div class="con_div">
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img th:src="@{/img/info_1.png}" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>设备总数(辆)</p>
+                    <p th:text="${deviceTotal}"></p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img th:src="@{/img/info_2.png}" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>设备在线数(辆)</p>
+                    <p th:text="${deviceOnlineTotal}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+            <div class="con_div_text01 left">
+                <img th:src="@{/img/info_4.png}" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>突发警情(数)</p>
+                    <p class="sky" th:text="${alertTotal}"></p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img th:src="@{/img/info_5.png}" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>处理警情(数)</p>
+                    <p class="sky" th:text="${alertProcessedTotal}"></p>
+                </div>
+            </div>
+        </div>
+        <div class="con_div_text left">
+
+            <div class="con_div_text01 left">
+                <img th:src="@{/img/info_6.png}" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>行驶时长总数(s)</p>
+                    <p class="org">12356</p>
+                </div>
+            </div>
+            <div class="con_div_text01 right">
+                <img th:src="@{/img/info_7.png}" class="left text01_img"/>
+                <div class="left text01_div">
+                    <p>行驶平均数(s)</p>
+                    <p class="org">12356</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--统计分析图-->
+    <div class="div_any">
+        <div class="left div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_1.png}">设备类型统计</div>
+                <p id="char1" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_2.png}">视频有用性统计</div>
+                <p id="char2" class="p_chart"></p>
+            </div>
+        </div>
+        <div class="div_any02 left ">
+            <div class="div_any_child div_height">
+                <div class="div_any_title any_title_width"><img th:src="@{/img/title_3.png}">监控地图</div>
+                <div id="map_div"></div>
+            </div>
+        </div>
+        <div class="right div_any01">
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_4.png}">警情数量统计</div>
+                <p id="char3" class="p_chart"></p>
+            </div>
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_5.png}">警情原因统计</div>
+                <p id="char4" class="p_chart"></p>
+            </div>
+        </div>
+    </div>
+    <!--分析表格-->
+    <div class="div_table">
+        <div class="left div_table_box">
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_4.png}">实时警报</div>
+                <div class="table_p">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>警报原因</th>
+                            <th>姓名</th>
+                            <th>时间</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item:${onlineAlerts}">
+                            <td th:text="${item.classification}"></td>
+                            <td th:text="${item.userName}"></td>
+                            <td th:text="${item.createTime}"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </div>
+        <div class="left div_table_box">
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_4.png}">无人机</div>
+                <div class="table_p">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th>名称</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="item:${airplanes} ">
+                            <td th:text="${item.type}"></td>
+                            <td th:text="${item.name}"></td>
+                            <td th:text="${item.status==1?'正常':'异常'}"></td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="left div_table_box">
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_4.png}">摄像头</div>
+                <div class="table_p">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>类型</th>
+                            <th>名称</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr th:each="item:${cameras} ">
+                                <td th:text="${item.type}"></td>
+                                <td th:text="${item.name}"></td>
+                                <td th:text="${item.status==1?'正常':'异常'}"></td>
+                            </tr>
+
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="left div_table_box">
+            <div class="div_any_child">
+                <div class="div_any_title"><img th:src="@{/img/title_4.png}">车辆</div>
+                <div class="table_p">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th>车牌号</th>
+                            <th>时速</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>京A12345</td>
+                            <td>134.2</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>京A12345</td>
+                            <td>134.2</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>京A12345</td>
+                            <td>134.2</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>京A12345</td>
+                            <td>134.2</td>
+                        </tr>
+                        <tr>
+                            <td>1</td>
+                            <td>京A12345</td>
+                            <td>134.2</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script th:src="@{/js/jquery/jQuery-2.2.0.min.js}"></script>
+<script th:src="@{/js/echarts.js}"></script>
+<!--<script th:src="@{/json/echarts.min.js}"></script>-->
+<script th:src="@{/js/base.js}"></script>
+<script th:src="@{/js/customed.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+
+
+<!-- 添加百度地图  -->
+<script type="text/javascript"
+        src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=9V9PXZPhjMjELFOiBOUfzhDLdXPQbhET"></script>
+<!-- 添加百度地图脚本 -->
+<script th:src="@{/js/map/index_control.js}"></script>
+
+</body>
+</html>

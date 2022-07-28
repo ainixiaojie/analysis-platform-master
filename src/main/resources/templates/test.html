@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script></script>
+</head>
+<body>
+<!--<div th:if="${cameras.size()>0}">-->
+<!-- <tr th:each="num:${#numbers.sequence(0,cameras.size()-1)} ">-->
+<!--    <td th:text="${num}+1"></td>-->
+<!--    <td th:text="${cameras.get(num).detail}"></td>-->
+<!--    <td th:text="${cameras.get(num).status==1?'正常':'异常'}"></td>-->
+<!--</tr>-->
+<!--</div>-->
+
+<div th:if="${cameras.size()>0}">
+    <tr th:each="item:${cameras} ">
+        <td th:text="${item.type}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.status==1?'正常':'异常'}"></td>
+    </tr>
+</div>
+<div >
+    <tr th:each="item:${airplanes} ">
+        <td th:text="${item.type}"></td>
+        <td th:text="${item.name}"></td>
+        <td th:text="${item.status==1?'正常':'异常'}"></td>
+    </tr>
+</div>
+
+
+
+
+
+
+    
+</body>
+</html>

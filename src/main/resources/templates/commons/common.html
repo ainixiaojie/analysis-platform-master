@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<header class="header left" th:fragment="top">
+    <div class="left nav">
+        <ul>
+            <li class="nav_active"><i class="nav_1"></i><a th:href="@{/index}">数据概览</a></li>
+            <li class="nav_active"><i class="nav_2"></i><a th:href="@{/carContrl}">车辆监控</a></li>
+            <li class="nav_active"><i class="nav_3"></i><a th:href="@{/map}">地图界面</a></li>
+            <li class="nav_active"><i class="nav_4"></i><a th:href="@{/useful}">有用性检测</a></li>
+
+
+        </ul>
+    </div>
+    <div class="header_center left">
+        <h2><strong>边缘计算车辆监控系统</strong></h2>
+        <p class="color_font"><small>Comprehensive service platform for smart tourism</small></p>
+    </div>
+    <div class="right nav text_right">
+        <ul>
+            <li class="nav_active"><i class="nav_4"></i><a th:href="@{/transform}">指挥调度</a></li>
+            <li class="nav_active"><i class="nav_7"></i><a th:href="@{/static}">查询统计</a></li>
+            <li class="nav_active"><i class="nav_8"></i><a th:href="@{/message}">信息录入</a></li>
+            <li class="nav_active"><i class="nav_4"></i><a th:href="@{/table1}">表格界面</a></li>
+        </ul>
+    </div>
+
+</header>
+
+</body>
+</html>

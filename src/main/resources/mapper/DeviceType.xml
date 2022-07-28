@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.mapper.DeviceTypeMapper">
+
+    <select id="getDeviceType" resultType="ChartDto">
+        SELECT
+            dt.name as name,
+            count(d.id) as value
+        FROM device_type dt
+        left join device  d on dt.id=d.type_id
+        group by dt.name
+        order by count(d.id) desc
+
+    </select>
+
+
+    <!--    <select id="getDeviceFailure" resultType="MyData">-->
+    <!--        select-->
+    <!--            f.failure_id as id,-->
+    <!--            f.failure as name,-->
+    <!--            count(*) as count-->
+
+
+    <!--        from device_details d-->
+    <!--            join failures f using( failure_id)-->
+    <!--        group by  f.failure_id,f.failure-->
+    <!--        order by count desc-->
+    <!--    </select>-->
+
+
+
+
+    <!--    <select id="getAlerts" resultType="map">-->
+    <!--        select-->
+    <!--            extract(month from create_time) as name,-->
+    <!--            count(*) as count-->
+    <!--        from alerts-->
+    <!--        group by  name-->
+
+    <!--    </select>-->
+
+
+
+
+
+
+</mapper>

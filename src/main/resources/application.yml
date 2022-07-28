@@ -1,0 +1,24 @@
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/platform?characterEncoding=utf-8&serverTimezone=GMT%2B8
+    username: root
+    password: 1234
+
+  thymeleaf:
+    cache: false
+  jackson:
+    time-zone: GMT+8
+    date-format: yyyy-MM-dd HH:mm:ss
+
+mybatis-plus:
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  type-aliases-package: com.example.Dto
+  mapper-locations:  classpath:mapper/*.xml
+
+server:
+  port: 8082
+
+

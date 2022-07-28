@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>统计分析界面</title>
+    <link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+<!--顶部-->
+<div th:insert="~{commons/common::top}"></div>
+<!--内容部分-->
+<div class="con left">
+    <!--选择时间-->
+    <div class="static_top left">
+        <i></i><span>统计概况</span>
+    </div>
+    <!--数据总概-->
+    <div class="stiatic_top_con left">
+
+        <table>
+            <tr>
+                <td class="labe_td">总概：</td>
+                <td colspan="3" class="sky">拥有设备数目[[${deviceTotal}]]台！</td>
+            </tr>
+            <tr>
+                <td class="labe_td">在线设备数</td>
+                <td >[[${deviceOnlineTotal}]]</td>
+                <td class="labe_td">问题设备数</td>
+                <td   >[[${deviceProblemTotal}]]</td>
+            </tr>
+            <tr>
+                <td class="labe_td">突发警情</td>
+                <td class="red" th:text="${alertTotal}"></td>
+                <td class="labe_td">处理警情数目</td>
+                <td  th:text="${alertProcessedTotal}"></td>
+            </tr>
+        </table>
+
+    </div>
+    <!--统计分析图-->
+    <div class="static_top left">
+        <i></i><span>统计分析一</span>
+    </div>
+    <div class="div_any">
+        <div class="left div_any03">
+            <div class="div_any_child01 left">
+                <div class="div_any_title"><img src="img/title_1.png">设备类型统计</div>
+                <p id="char1" class="p_chart"></p>
+                <div class="char_table">
+                    <div class="table_p table_p01">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>类型</th>
+                                <th>数量</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${deviceTypes.size()>0}">
+                            <tr th:each="num:${#numbers.sequence(0,deviceTypes.size()-1)}">
+                                <td th:text="${num}+1"></td>
+                                <td th:text="${deviceTypes.get(num).name}"></td>
+                                <td th:text="${deviceTypes.get(num).value}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+            <div class="div_any_child01 left">
+                <div class="div_any_title"><img src="img/title_2.png">视频有用性统计</div>
+                <p id="char2" class="p_chart"></p>
+                <div class="char_table">
+                    <div class="table_p table_p01">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>原因</th>
+                                <th>数量</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${notifications.size()>0}">
+                            <tr   th:each="num:${#numbers.sequence(0,(notifications.size()>5?5:notifications.size()-1))}">
+                                <td th:text="${num}+1"></td>
+                                <td th:text="${notifications.get(num).getName()}"></td>
+                                <td th:text="${notifications.get(num).getValue()}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="static_top left">
+            <i></i><span>统计分析一</span>
+        </div>
+        <div class="right div_any03">
+            <div class="div_any_child01 left">
+                <div class="div_any_title"><img src="img/title_4.png">警报数量统计</div>
+                <p id="char3" class="p_chart"></p>
+                <div class="char_table">
+                    <div class="table_p table_p01">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>月份</th>
+                                <th>数量</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${alerts.size()>0}">
+                            <tr th:each="num:${#numbers.sequence(0,(alerts.size()>5?5:alerts.size()-1))}">
+                                <td th:text="${num}+1"></td>
+                                <td th:text="${alerts.get(num).name}">/td>
+                                <td th:text="${alerts.get(num).value}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="div_any_child01 left">
+                <div class="div_any_title"><img src="img/title_5.png">警报原因统计</div>
+                <p id="char4" class="p_chart"></p>
+                <div class="char_table">
+                    <div class="table_p table_p01">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>原因</th>
+                                <th>数量</th>
+                            </tr>
+                            </thead>
+                            <tbody th:if="${alertClassifications.size()>0}">
+                            <tr th:each="num:${#numbers.sequence(0,(alertClassifications.size()>5?5:alertClassifications.size()-1))} ">
+                                <td th:text="${num}+1"></td>
+                                <td th:text="${alertClassifications.get(num).name}"></td>
+                                <td th:text="${alertClassifications.get(num).value}"></td>
+                            </tr>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="static_top left">
+            <i></i><span>统计分析一</span>
+        </div>
+
+        <div class="right div_any03">
+
+            <div class="div_any_child01 left div_any_child01_wh">
+                <div class="div_any_title"><img src="img/title_5.png">车辆报警统计</div>
+                <p id="char5" class="p_chart" style="height: 550px"></p>
+                <div class="char_table">
+                    <div class="table_p table_p01">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>排名</th>
+                                <th>车牌号</th>
+                                <th>里程数（km）</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>京A12345</td>
+                                <td>134.2</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>京A12345</td>
+                                <td>134.2</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>京A12345</td>
+                                <td>134.2</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>京A12345</td>
+                                <td>134.2</td>
+                            </tr>
+                            <tr>
+                                <td>1</td>
+                                <td>京A12345</td>
+                                <td>134.2</td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script th:src="@{/js/jquery/jQuery-2.2.0.min.js}"></script>
+<script th:src="@{/js/echarts.js}"></script>
+
+<!--<script th:src="@{/json/echarts.min.js}"></script>-->
+<script th:src="@{/js/base.js}"></script>
+<script th:src="@{/js/customed.js}"></script>
+<script th:src="@{/js/static.js}"></script>
+<script th:src="@{/js/index.js}"></script>
+
+</body>
+</html>

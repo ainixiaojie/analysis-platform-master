@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>车辆监控</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css"/>
+    <script src="js/flv/flv.min.js"></script>
+
+
+</head>
+<style>
+
+</style>
+<body>
+<!--顶部-->
+<div th:insert="~{commons/common::top}"></div>
+<!--内容部分-->
+<div class="con1 left" id="car_control">
+    <div class="left car_left">
+        <div class="left_up bow_shadow">
+            <p>
+                <input type="text" placeholder="输入车牌号" class="carNo_input"><input type="button" class="find_but"/>
+            </p>
+
+            <p class="set_list"><i class="list_i"></i> 设备列表：</p>
+            <!-- ztree插件使用 -->
+            <p>
+            <ul id="treeDemo" class="ztree"></ul>
+            </p>
+        </div>
+        <div class="left_down bow_shadow">
+            <div class="text_center"><a href="javascript:void (0)" class="tab_a tab_aActive">基本信息</a><a
+                    href="javascript:void (0)" class="tab_a">云台控制</a></div>
+            <div class="car_content">
+                <p><span>车牌号：</span><span>K89076</span></p>
+                <p><span>驾驶人姓名：</span><span>K89076</span></p>
+                <p><span>车辆品牌：</span><span>K89076</span></p>
+                <p><span>车辆型号：</span><span>K89076</span></p>
+                <p><span>所属公司：</span><span>K89076xxxxxxxxxxxxxxxxxx</span></p>
+                <p><span>行驶里程：</span><span>xxxxx</span></p>
+                <p><span>状态：</span><span>xxxxx</span></p>
+                <p><span>所在位置：</span><span>xxxxxxxxxxxxx</span></p>
+            </div>
+        </div>
+    </div>
+    <div class="left car_center">
+        <video id="videoElement" class="video" muted controls="controls"></video>
+        <video class="video magin_left" muted controls="controls"></video>
+        <video class="video magin_top" muted controls="controls"></video>
+        <video class="video magin_top magin_left" muted controls="controls"></video>
+    </div>
+    <div class="right car_right" id="map_box"></div>
+
+
+</div>
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/echarts-all.js"></script>
+<script src="js/base.js"></script>
+
+
+<!-- 添加百度地图  -->
+<script type="text/javascript"
+        src="//api.map.baidu.com/api?type=webgl&v=1.0&ak=9V9PXZPhjMjELFOiBOUfzhDLdXPQbhET"></script>
+<!-- 添加百度地图脚本 -->
+<script src="js/map/car_control.js"></script>
+
+
+<script src="js/ztree/jquery.ztree.all-3.5.js"></script>
+<script src="js/listTree.js"></script>
+
+<script src="js/flv/flv_video.js"></script>
+
+
+</body>
+</html>

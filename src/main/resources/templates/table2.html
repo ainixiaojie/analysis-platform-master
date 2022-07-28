@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表格一</title>
+    <link rel="stylesheet" href="js/bstable/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="js/bstable/css/bootstrap-table.css"/>
+    <link rel="stylesheet" href="css/base.css">
+    <link href="css/zTreeStyle/zTreeStyle.css" rel="stylesheet" type="text/css" />
+
+</head>
+<style>
+
+</style>
+<body>
+<!--顶部-->
+<div th:insert="~{commons/common::top}"></div>
+<!--内容部分-->
+<div class="con1 left" id="car_control">
+    <div class="center_table">
+<div class="table_find">
+    <p>  <span class="span_left"><label>关键字：</label><input type="text" placeholder="输入关键字"><button class="find_but1"></button></span></p>
+
+</div>
+
+        <div class="table_div" style="margin-top: 0">
+                            <p class="table_but"><span class="right"><a href="javascript:void(0)" onclick="add1()"><i class="glyphicon glyphicon-plus"></i>新增</a><a href="javascript:void(0)"><i class="glyphicon glyphicon-remove"></i> 删除</a><a href="javascript:void(0)"><i class="glyphicon glyphicon-print"></i>打印</a><a href="javascript:void(0)"><i class="glyphicon glyphicon-export"></i>导出</a> </span></p>
+            <p><table id="table" class="table2_style" border="0"></table></p>
+        </div>
+    </div>
+
+
+
+
+</div>
+
+
+
+
+
+<script src="js/jquery/jQuery-2.2.0.min.js"></script>
+<script src="js/base.js"></script>
+<script src="js/table1.js"></script>
+<script src="js/ztree/jquery.ztree.all-3.5.js"></script>
+<script src="js/listTree.js"></script>
+<script src="js/bstable/js/bootstrap.min.js"></script>
+<script src="js/bstable/js/bootstrap-table.js"></script>
+<script src="js/bstable/js/bootstrap-table-zh-CN.min.js"></script>
+<script src="js/layer_v2.1/layer/layer.js"></script>
+
+</body>
+</html>
